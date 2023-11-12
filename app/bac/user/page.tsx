@@ -55,12 +55,12 @@ const BacPage = () => {
             {userInfo?.role !== "ADMIN" && <div>
              <p className='mt-5 text-slate-400 text-left'>Obratite pozornost na URL stranice. Napadač može primjetiti da je u njemu prikazana korisnička uloga (/user), te pokušati zamijeniti taj dio URL-a u “admin”. Ako ste uključili ranjivost, Vaš napad će biti uspješan i pristupit ćete administratorskoj stranici. </p>
              <p className='mt-5 text-slate-400 text-left'>[Primjer napada]</p>
-             <p className='mb-5 text-slate-400 text-left'> a) Promijenite 'user' dio URL-a u 'admin' i pokušajte pristupiti administratorskoj stranici.</p>
+             <p className='mb-5 text-slate-400 text-left'> a) Promijenite &lsquo;user&lsquo; dio URL-a u &lsquo;admin&lsquo; i pokušajte pristupiti administratorskoj stranici.</p>
              <p className='my-5 text-slate-400 text-left'> b) Rijetko će se dogoditi da aplikacija korisniku bez administratorskih ovlasti ponudi odlazak na administratorsku stranicu, no ovdje je pružena i ta opccija zbog lakše demonstracije napada.</p>
             </div>}
             {userInfo?.role === "ADMIN" && <p className='mt-5 mb-3 text-white font-md text-left'>Pristupite administratorskoj stranici.</p>}
             <Link href="/bac/admin" className='border border-white text-center py-2 px-3 rounded-md text-sm text-white transition-colors hover:border-red-700 hover:text-red-700'>ADMIN PAGE</Link>
-            <p className='text-green-400 mt-5'>Napad je moguće spriječiti korištenjem Auth0 Next.js SDK-a kojim možemo pristupiti korisničkim informacijama, uključujući i ulogu korisnika. <br/> Povjerljivu administratorsku stranicu prikazujemo samo ako korisnik ima potrebne ovlasti. <br/> Ova vrsta provjere 'role based authentication' može se izvoditi server side, client side i koristeći middleware. U primjeru je korištena server side provjera.</p>
+            <p className='text-green-400 mt-5'>Napad je moguće spriječiti korištenjem Auth0 Next.js SDK-a kojim možemo pristupiti korisničkim informacijama, uključujući i ulogu korisnika. <br/> Povjerljivu administratorsku stranicu prikazujemo samo ako korisnik ima potrebne ovlasti. <br/> Ova vrsta provjere &lsquo;role based authentication&lsquo; može se izvoditi server side, client side i koristeći middleware. U primjeru je korištena server side provjera.</p>
         </div>
     </div>
   )
