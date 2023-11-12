@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XSS Vulnerability Demo</title>
+  <style>
+    .mt-1 {
+      margin-top: 1rem;
+    }
+    .gap-1 {
+      gap: 1rem;
+    }
+    .cursor-pointer {
+      cursor: pointer;
+    }
+    .peer {
+      /* Add your peer styles here */
+    }
+    .peer-checked {
+      /* Add your peer-checked styles here */
+    }
+    .bg-slate-700 {
+      background-color: slategray;
+    }
+    .rounded-md {
+      border-radius: 0.375rem; /* 6px */
+    }
+    .h-96 {
+      height: 24rem; /* 384px */
+    }
+    .p-8 {
+      padding: 2rem;
+    }
+    .flex {
+      display: flex;
+    }
+    .flex-row {
+      flex-direction: row;
+    }
+    .gap-4 {
+      gap: 1rem;
+    }
+    .text-white {
+      color: white;
+    }
+    .font-bold {
+      font-weight: bold;
+    }
+    .text-sm {
+      font-size: 0.875rem; /* 14px */
+    }
+    .rounded-lg {
+      border-radius: 0.5rem; /* 8px */
+    }
+    .p-1 {
+      padding: 0.25rem; /* 4px */
+    }
+    .text-xs {
+      font-size: 0.75rem; /* 12px */
+    }
+    .h-7 {
+      height: 1.75rem; /* 28px */
+    }
+    .w-7 {
+      width: 1.75rem; /* 28px */
+    }
+    .font-bold {
+      font-weight: bold;
+    }
+    .mt-10 {
+      margin-top: 2.5rem; /* 40px */
+    }
+    .text-yellow-300 {
+      color: #fbbf24;
+    }
+    .text-xl {
+      font-size: 1.25rem; /* 20px */
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  <div class="mt-1 flex gap-1 items-center">
+    <input
+      id="checkboxVulnerability"
+      type="checkbox"
+      class="cursor-pointer peer"
+    />
+    <label
+      for="checkboxVulnerability"
+      class="cursor-pointer text-white font-bold peer-checked:text-red-500"
+    >
+      Uključena ranjivost
+    </label>
+  </div>
+
+  <div class="bg-slate-700 rounded-md h-96 mt-10 p-8">
+    <div class="flex flex-row gap-4">
+      <div class="flex flex-col gap-1 items-start">
+        <label
+          for="userName"
+          class="text-white font-bold text-sm"
+        >
+          Unesite svoje korisničko ime
+        </label>
+        <input
+          class="rounded-md px-3"
+          id="userName"
+          type="text"
+        />
+      </div>
+      <button
+        class="mt-5 border border-white text-white rounded-lg p-1 text-xs h-7 w-7 font-bold"
+        onclick="handleRenderClick()"
+      >
+        OK
+      </button>
+    </div>
+    <div id="myDiv" class="mt-10 font-bold text-yellow-300 text-xl"></div>
+  </div>
+</div>
+
+<script>
+  function handleRenderClick() {
+    const input = document.getElementById('userName').value;
+    const checkbox = document.getElementById('checkboxVulnerability');
+    const vulnerableDiv = document.getElementById('myDiv');
+
+    if (checkbox.checked) {
+      // If the checkbox is checked, directly insert the input without sanitization
+      vulnerableDiv.innerHTML = input;
+    } else {
+      // Otherwise, sanitize the input before inserting
+      const sanitizedInput = DOMPurify.sanitize(input);
+      vulnerableDiv.innerHTML = sanitizedInput;
+    }
+  }
+</script>
+
+</body>
+</html>
